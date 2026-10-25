@@ -9,13 +9,3 @@
    The function opens a SQLite connection but never closes it and does not use
    a context manager. Repeated calls can leak resources and leave transactions
    or locks unmanaged.
-
-3. **DOM-based XSS** - `frontend/script.js`, `renderUserGreeting()`.
-   The `username` URL parameter is attacker-controlled and is inserted directly
-   into `innerHTML`. HTML or script markup in the parameter can execute in the
-   page context. Text rendering or explicit sanitization is required.
-
-4. **Undefined function reference** - `frontend/script.js`, `window.onload`.
-   The load handler calls `initializeAnalyticsEngine()`, but no such function is
-   defined or imported. The resulting `ReferenceError` stops the handler before
-   the greeting is rendered.
